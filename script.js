@@ -5,9 +5,7 @@ function Book(title,author,pages,read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function () {
-        return this.title + " by " + this.author + ", " + this.pages + " pages, " + this.read;
-    }
+    
 
     
 }
@@ -19,11 +17,28 @@ function addBookToLibrary(title,author,pages,read) {
 }
 
 function bookDisplay(){
-    myLibrary.forEach(() => {
+    myLibrary.forEach((book) => {
+        const parentDiv = document.querySelector(".content")
+        const div = document.createElement("div");
+        div.classList.add("card");
+        parentDiv.appendChild(div);
+        displayObjectItems(book,div);
         
     })
 }
 
- addBookToLibrary("title","author","pages","read");
+function displayObjectItems(book,content) {
+    const div = document.createElement("div");
+    content.appendChild(div);
+    for (let key in book){
+        const p = document.createElement("p");
+        p.textContent = book[key];
+        div.appendChild(p);
+    }
+}
 
- addBookToLibrary("title","author","pages","read");
+ addBookToLibrary("Title","Author","Pages","Read");
+
+ addBookToLibrary("Title","Author","Pages","Read");
+
+ bookDisplay();
