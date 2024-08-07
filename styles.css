@@ -44,3 +44,29 @@
   #root, #__next {
     isolation: isolate;
   }
+
+  h1 {
+    text-align: center;
+  }
+
+  .content {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .card {
+    width: 250px;
+    height: 250px;
+    background-color: gray;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content:  center;
+    align-items: flex-start;
+    padding-left: 5px;
+  }
+
+  .card > div > * {
+    margin-bottom: 20px;
+  }
