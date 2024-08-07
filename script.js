@@ -1,4 +1,6 @@
-function book(title,author,pages,read) {
+const myLibrary = [];
+
+function Book(title,author,pages,read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -10,4 +12,18 @@ function book(title,author,pages,read) {
     
 }
 
-const theHobbit = new book("The Hobbit","J.R.R. Tolkien",295,"not read yet")
+function addBookToLibrary(title,author,pages,read) {
+
+    const newBook = new Book(title,author,pages,read);
+    myLibrary.push(newBook);
+}
+
+function bookDisplay(){
+    myLibrary.forEach(() => {
+        
+    })
+}
+
+ addBookToLibrary("title","author","pages","read");
+
+ addBookToLibrary("title","author","pages","read");
