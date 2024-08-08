@@ -37,8 +37,31 @@ function displayObjectItems(book,content) {
     }
 }
 
- addBookToLibrary("Title","Author","Pages","Read");
+function addButtonHandler() {
+    const dialog = document.querySelector("dialog");
+    const showButton = document.querySelector("dialog + button");
+    const closeButton = document.querySelector("dialog button");
 
- addBookToLibrary("Title","Author","Pages","Read");
+    // "Show the dialog" button opens the dialog modally
+    showButton.addEventListener("click", () => {
+        dialog.showModal();
+    });
+
+    // "Close" button closes the dialog and updates page with book
+    closeButton.addEventListener("click", () => {
+        const read = (document.getElementById("read").checked)? "Read":"Unread";
+        addBookToLibrary( document.getElementById("title").value,
+        document.getElementById("author").value,
+        document.getElementById("pages").value,
+        read
+        )
+        bookDisplay();
+        dialog.close();
+    });
+}
+
+
 
  bookDisplay();
+
+ addButtonHandler();
