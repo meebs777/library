@@ -50,6 +50,7 @@ function displayObjectItems(book,content) {
     deleteButton.setAttribute("type","button");
     deleteButton.classList.add("remove");
     div.appendChild(deleteButton);
+    removeBookFromLibray(deleteButton,div);
 
 }
 
@@ -76,12 +77,27 @@ function addButtonHandler() {
     });
 }
 
-function removeBookFromLibray() {
-
+function removeBookFromLibray(deleteButton,card) {
+    
+    
+        deleteButton.addEventListener("click", () => {
+            //Shifts data index appropriately after deleting the element on the DOM
+            const cards = document.querySelectorAll(".card");
+            cards.forEach((current) => {
+                if (current.dataset.index > card.dataset.index) {
+                    current.dataset.index--;
+                }
+            })
+            card.remove();
+        }
+    );
 }
 
 
 
  //bookDisplay();
 
+
  addButtonHandler();
+
+ 
