@@ -1,21 +1,22 @@
 const myLibrary = [];
+const div = document.createElement("div");
+let libraryIndex = -1;
 
 function Book(title,author,pages,read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    
-
-    
 }
 
 function addBookToLibrary(title,author,pages,read) {
 
     const newBook = new Book(title,author,pages,read);
     myLibrary.push(newBook);
+    libraryIndex++;
 }
 
+/*
 function bookDisplay(){
     myLibrary.forEach((book) => {
         const parentDiv = document.querySelector(".content")
@@ -25,16 +26,31 @@ function bookDisplay(){
         displayObjectItems(book,div);
         
     })
-}
+} 
+*/
 
 function displayObjectItems(book,content) {
+    //Create main content div and div for card and append it to page
+    const parentDiv = document.querySelector(".content")
     const div = document.createElement("div");
-    content.appendChild(div);
+    div.classList.add("card");
+    parentDiv.appendChild(div);
+    const div1 = document.createElement("div");
+    div.setAttribute("data-index",libraryIndex)
+    content.appendChild(div1);
+    //Update card with elements in object
     for (let key in book){
         const p = document.createElement("p");
         p.textContent = book[key];
         div.appendChild(p);
     }
+    //Add a delete Button with creation of card
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Remove Book"
+    deleteButton.setAttribute("type","button");
+    deleteButton.classList.add("remove");
+    div.appendChild(deleteButton);
+
 }
 
 function addButtonHandler() {
@@ -55,13 +71,17 @@ function addButtonHandler() {
         document.getElementById("pages").value,
         read
         )
-        bookDisplay();
+        displayObjectItems(myLibrary[libraryIndex],div);
         dialog.close();
     });
 }
 
+function removeBookFromLibray() {
+
+}
 
 
- bookDisplay();
+
+ //bookDisplay();
 
  addButtonHandler();
