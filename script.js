@@ -95,7 +95,7 @@ function removeBookFromLibray(deleteButton,card) {
             })
             //Remove the appropriate index in the library using the data attribute
             myLibrary.splice(card.dataset.index,1);
-            
+            libraryIndex--;
             card.remove();
             
         }
