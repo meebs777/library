@@ -71,7 +71,7 @@
     flex-direction: column;
     justify-content:  center;
     align-items: flex-start;
-    padding-left: 5px;
+    padding-left: 15px;
     gap: 20px;
   }
 
@@ -102,10 +102,20 @@
     margin-right: 5px;
   }
 
+  .button-wrapper {
+    display: flex;
+    gap: 50px;
+  }
+
   .remove {
     background-color: red;
     justify-self: flex-end;
     align-self: flex-end;
     margin-right: 15px;
     border-radius: 50px;
+  }
+
+  .read-status {
+    border-radius: 25px;
+    margin-left: 5px;
   }

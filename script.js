@@ -16,18 +16,6 @@ function addBookToLibrary(title,author,pages,read) {
     libraryIndex++;
 }
 
-/*
-function bookDisplay(){
-    myLibrary.forEach((book) => {
-        const parentDiv = document.querySelector(".content")
-        const div = document.createElement("div");
-        div.classList.add("card");
-        parentDiv.appendChild(div);
-        displayObjectItems(book,div);
-        
-    })
-} 
-*/
 
 function displayObjectItems(book,content) {
     //Create main content div and div for card and append it to page
@@ -49,7 +37,23 @@ function displayObjectItems(book,content) {
     deleteButton.textContent = "Remove Book"
     deleteButton.setAttribute("type","button");
     deleteButton.classList.add("remove");
-    div.appendChild(deleteButton);
+
+    //Add a wrapper for both delete and status button
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.classList.add("button-wrapper");
+    div.appendChild(buttonWrapper);
+
+    //Create a read and unread status button
+    const statusButton = document.createElement("button");
+    statusButton.setAttribute("type","button");
+    statusButton.classList.add("read-status");
+
+    //Determine what to place on read status button
+    (myLibrary[libraryIndex].read === "Read")? statusButton.textContent = "Read": statusButton.textContent = "Unread";
+
+    buttonWrapper.appendChild(statusButton);
+    buttonWrapper.appendChild(deleteButton);
+
     removeBookFromLibray(deleteButton,div);
 
 }
@@ -86,6 +90,7 @@ function removeBookFromLibray(deleteButton,card) {
             cards.forEach((current) => {
                 if (current.dataset.index > card.dataset.index) {
                     current.dataset.index--;
+                    
                 }
             })
             //Remove the appropriate index in the library using the data attribute
@@ -98,8 +103,6 @@ function removeBookFromLibray(deleteButton,card) {
 }
 
 
-
- //bookDisplay();
 
 
  addButtonHandler();
