@@ -9,6 +9,14 @@ function Book(title,author,pages,read) {
     this.read = read;
 }
 
+Book.prototype.changeReadStatus = function() {
+    if (this.read === "Read") {
+        this.read = "Unread";
+    } else {
+        this.read = "Read";
+    }
+}
+
 function addBookToLibrary(title,author,pages,read) {
 
     const newBook = new Book(title,author,pages,read);
@@ -28,9 +36,11 @@ function displayObjectItems(book,content) {
     content.appendChild(div1);
     //Update card with elements in object
     for (let key in book){
-        const p = document.createElement("p");
-        p.textContent = book[key];
-        div.appendChild(p);
+        if(book.hasOwnProperty(key)){
+            const p = document.createElement("p");
+            p.textContent = book[key];
+            div.appendChild(p);
+        }
     }
     //Add a delete Button with creation of card
     const deleteButton = document.createElement("button");
@@ -49,11 +59,12 @@ function displayObjectItems(book,content) {
     statusButton.classList.add("read-status");
 
     //Determine what to place on read status button
-    (myLibrary[libraryIndex].read === "Read")? statusButton.textContent = "Read": statusButton.textContent = "Unread";
+    (myLibrary[libraryIndex].read === "Read")? statusButton.textContent = "Unread": statusButton.textContent = "Read";
 
     buttonWrapper.appendChild(statusButton);
     buttonWrapper.appendChild(deleteButton);
 
+    updateReadStatus(statusButton,div);
     removeBookFromLibray(deleteButton,div);
 
 }
@@ -102,6 +113,26 @@ function removeBookFromLibray(deleteButton,card) {
     );
 }
 
+function updateReadStatus(statusButton,card) {
+    
+    statusButton.addEventListener("click", () => {
+        p = card.querySelectorAll("p");
+        if(statusButton.textContent === "Read") {
+            statusButton.textContent = "Unread";
+        } else {
+            statusButton.textContent = "Read";
+        }
+        p.forEach((current) => {
+            if(current.textContent === "Read") {
+                current.textContent = "Unread";
+            } else if (current.textContent === "Unread") {
+                current.textContent = "Read";
+            }
+        })
+        myLibrary[card.dataset.index].changeReadStatus();
+    })
+    
+}
 
 
 

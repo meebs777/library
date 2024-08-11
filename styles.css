@@ -76,7 +76,7 @@
   }
 
   .card > div > * {
-    margin-bottom: 20px;
+    
   }
 
   dialog + button {
@@ -116,6 +116,6 @@
   }
 
   .read-status {
-    border-radius: 25px;
+    border-radius: 20px;
     margin-left: 5px;
   }
