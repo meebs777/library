@@ -2,20 +2,27 @@ const myLibrary = [];
 const div = document.createElement("div");
 let libraryIndex = -1;
 
-function Book(title,author,pages,read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
 
-Book.prototype.changeReadStatus = function() {
-    if (this.read === "Read") {
-        this.read = "Unread";
-    } else {
-        this.read = "Read";
+class Book {
+    constructor(title,author,pages,read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    changeReadStatus() {
+        if (this.read === "Read") {
+            this.read = "Unread";
+        } else {
+            this.read = "Read";
+        }
     }
 }
+
+
+
+
 
 function addBookToLibrary(title,author,pages,read) {
 
